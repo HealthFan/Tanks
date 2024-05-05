@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour
 {
     public float launchSpeed = 75.0f;
     public GameObject objectPrefab;
+    public Button shootButton; // Reference to the UI button
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnObject();
-        }
+        // Add listener to the button click event
+        shootButton.onClick.AddListener(ShootObject);
     }
 
-    void SpawnObject()
+    void ShootObject()
     {
         Vector3 spawnPosition = transform.position;
         Quaternion spawnRotation = Quaternion.identity;
@@ -29,3 +29,4 @@ public class Bullet : MonoBehaviour
         rb.velocity = velocity;
     }
 }
+
